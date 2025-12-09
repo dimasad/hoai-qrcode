@@ -198,12 +198,19 @@
 
             const canvas = qrcodeDiv.querySelector('canvas');
             if (canvas) {
+                // Generate filename with timestamp
+                const timestamp = Date.now();
+                const filename = `qrcode_${timestamp}.png`;
+                
                 // Create a download link
                 const url = canvas.toDataURL('image/png');
                 const link = document.createElement('a');
-                link.download = 'qrcode.png';
+                link.download = filename;
                 link.href = url;
                 link.click();
+                
+                // Clean up
+                link.remove();
             }
         });
 
